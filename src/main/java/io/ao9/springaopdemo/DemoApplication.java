@@ -6,7 +6,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 
-import io.ao9.springaopdemo.dao.AccountDao;
+import io.ao9.springaopdemo.dao.AccountDAO;
+import io.ao9.springaopdemo.dao.MembershipDAO;
+import io.ao9.springaopdemo.entity.Account;
 
 @SpringBootApplication
 public class DemoApplication implements CommandLineRunner  {
@@ -19,7 +21,14 @@ public class DemoApplication implements CommandLineRunner  {
 
 	@Override
     public void run(String... args) throws Exception {
-		AccountDao theAccountDao = applicationContext.getBean(AccountDao.class);
-		theAccountDao.addAccount();        
+		AccountDAO theAccountDao = applicationContext.getBean(AccountDAO.class);
+		MembershipDAO theMembershipDAO = applicationContext.getBean(MembershipDAO.class);
+		theAccountDao.addAccount(new Account("Ao","pro"), true); 
+		theAccountDao.doWork();
+		theAccountDao.getServiceCode();
+		theAccountDao.setServiceCode("test");
+		theMembershipDAO.addAccount();
+		theMembershipDAO.addAMember();  
+		theMembershipDAO.goToSleep();    
     }
 }
