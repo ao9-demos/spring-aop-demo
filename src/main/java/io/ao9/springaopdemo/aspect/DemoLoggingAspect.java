@@ -1,7 +1,5 @@
 package io.ao9.springaopdemo.aspect;
 
-import java.util.Arrays;
-
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
@@ -15,7 +13,7 @@ import io.ao9.springaopdemo.entity.Account;
 @Aspect
 @Component
 @Order(2)
-public class DemoLoggingAspect {
+public class DemoLoggingAspect {    
     @Pointcut("execution(* io.ao9.springaopdemo.dao.*.*(..))")
     private void forDaoPackage() {
     }
@@ -39,10 +37,10 @@ public class DemoLoggingAspect {
         System.out.println("2222 " + methodSignature);
         Object[] args = theJoinPoint.getArgs();
         for (Object arg : args) {
-            System.out.println("2222 " + arg);
+            System.out.println("2222 " + arg.getClass() + arg);
             if (arg instanceof Account) {
                 Account theAccount = (Account) arg;
-                System.out.println("2222 " + theAccount.getName() + ": " + theAccount.getLevel());               
+                System.out.println("2222 " + theAccount);               
             }
         }
     }

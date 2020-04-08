@@ -30,4 +30,12 @@ public class Account {
     public void setLevel(String level) {
         this.level = level;
     }
+
+    @Override
+    public String toString() {
+        return "{" +
+            " name='" + getName() + "'" +
+            ", level='" + getLevel() + "'" +
+            "}";
+    }
 }
